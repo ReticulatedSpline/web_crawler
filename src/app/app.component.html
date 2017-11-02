@@ -1,0 +1,117 @@
+
+<span id="assembly">
+<div
+id="buttons"
+*ngIf = "!submitted">
+<button
+  md-mini-fab
+  id="topButton"
+  (click)="addTenant()"
+  color="accent"
+  [disabled]="count > 10"
+  mdTooltip="Add a tenant"
+  mdTooltipPosition="left">+</button>
+<br>
+<button
+  md-mini-fab
+  (click)="removeTenant()"
+  color="primary"
+  [disabled]="count < 2"
+  mdTooltip="Remove a tenant"
+  mdTooltipPosition="left">-</button>
+</div>
+
+<div
+id="buttons"
+*ngIf = "submitted"><br>
+</div>
+
+<md-card
+class="card"
+*ngIf = "!submitted">
+<h3 style = "padding-left: 2em">Tenants: {{count + 1}}</h3>
+  <ul class = "list">
+    <li *ngFor="let tenant of tenants">
+      <md-input-container
+        class = "cardItem">
+        <input
+          mdInput
+          [(ngModel)]="tenant.name"
+          placeholder="Tenant Name">
+      </md-input-container>
+      <h3
+        class = "cardItem">$</h3>
+      <md-input-container
+        class = "cardItem"
+        mdTooltip="Blanks are equivilent to $0.00"
+        mdTooltipPosition="right">
+        <input
+          mdInput
+          [(ngModel)]="tenant.paid"
+          placeholder="Amount Paid">
+      </md-input-container>
+    </li>
+    <button
+      md-raised-button
+      class = "center"
+      color = "primary"
+      [disabled] = "!valid()"
+      (click) = "submit()"
+      mdTooltip="Fill out all fields to unlock."
+      mdTooltipPosition="below">Who pays who?</button>
+  </ul>
+</md-card>
+
+<md-card
+class = "card"
+*ngIf = "submitted">
+  <md-card-header
+   id = "cardHeader">
+    <md-card-title>For the month of
+      <span
+      mdTooltip="Backdated two months"
+      mdTooltipPosition="above">{{getMonth()}}</span>:
+    </md-card-title>
+    <md-card-subtitle>Total Utilities: ${{total}} | Cost per Tenant: ${{ave}}</md-card-subtitle>
+  </md-card-header>
+  <md-card-content
+  ngFor = "let string of output"
+  id = "resultBorder">
+    <ul
+    *ngFor = "let string of output"
+    class = "list"
+    id = "resultList">
+      <li>{{string}}</li>
+    </ul>
+  </md-card-content>
+  <md-card-actions
+   id = "actions">
+    <button
+    md-button
+    (click) = "ngOnInit()">Start Over</button>
+    <input
+    type="text"
+    hidden
+    [(ngModel)]="output">
+    <button
+    md-button
+    ngxClipboard
+    [cbContent]="output"
+    (click) = "openSnackbar()">Copy to Clipboard</button>
+    <a [href] = "mailLink"
+        id = "mailTo">
+      <button md-button>Email</button></a>
+  </md-card-actions>
+</md-card>
+
+<a
+  id="github"
+  [href] = "githubLink">
+  <button
+    md-icon-button
+    mdTooltip="View Source"
+    mdTooltipPosition="right"><img
+    [src]="githubLogoPath"></button>
+</a>
+
+</span>
