@@ -5,13 +5,16 @@ import { AppComponent } from './app.component';
 import { NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule,
          ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule,
-         MdCheckboxModule,
-         MdInputModule,
-         MdSnackBarModule,
-         MdCardModule,
-         MdTooltipModule} from '@angular/material';
+import { MatButtonModule,
+         MatCheckboxModule,
+         MatInputModule,
+         MatSnackBarModule,
+         MatCardModule,
+         MatTooltipModule,
+         MatSelectModule,
+         MatSliderModule} from '@angular/material';
 import { ClipboardModule } from 'ngx-clipboard';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -24,11 +27,13 @@ import { ClipboardModule } from 'ngx-clipboard';
     FormsModule,
     ReactiveFormsModule,
     //Material
-    MdButtonModule,
-    MdInputModule,
-    MdCardModule,
-    MdSnackBarModule,
-    MdTooltipModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatSliderModule,
     //Clipboard
     ClipboardModule,
   ],
