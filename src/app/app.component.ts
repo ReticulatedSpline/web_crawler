@@ -24,13 +24,18 @@ export class AppComponent {
 
   public regexes : Regex[];
   public formArray : FormArray;
-  public submitted : boolean;
   public mailLink : string;
-  public inkRipple : boolean;
+  public submitted : boolean;
+  public email: boolean;
+  public phone: boolean;
+  public address: boolean;
 
   constructor(public snackBar: MatSnackBar) {
-    this.inkRipple = false;
     this.submitted = false;
+    this.regexes = [];
+    this.email = true;
+    this.phone = true;
+    this.address = false;
   }
 
   addRegex() : void {

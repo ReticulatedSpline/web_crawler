@@ -20,11 +20,13 @@
         <h4>Search for...</h4>
       </li><li>
         <mat-checkbox
-         (labelPosition) = 'before'>Emails</mat-checkbox>
+         labelPosition = "after">Email</mat-checkbox>
       </li><li>
-        <mat-checkbox>Phone Numbers</mat-checkbox>
+        <mat-checkbox
+        labelPosition = "after">Phone Numbers</mat-checkbox>
       </li><li>
-        <mat-checkbox>Addresses</mat-checkbox>
+        <mat-checkbox
+        labelPosition = "after">Addresses</mat-checkbox>
       </li><li><span>
         <h4
         style = "display: inline;"
@@ -34,19 +36,38 @@
           mat-mini-fab
           class="button"
           color="accent"
+          (click) = "addRegex()"
           matTooltip="Add a search string"
           matTooltipPosition="left">+</button>
         <button
           mat-mini-fab
           class="button"
           color="primary"
+          (click) = "removeRegex()"
           matTooltip="Remove a search string"
           matTooltipPosition="left">-</button>
       </span></li>
+      <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
+        <mat-input-container
+          class = "cardItem">
+          <input
+            matInput
+            [(ngModel)] = "regexes[i].name"
+            placeholder="Name">
+        </mat-input-container>
+        <mat-input-container
+          class = "cardItem">
+          <input
+            matInput
+            [(ngModel)] = "regexes[i].placeholder"
+            placeholder="Text Pattern">
+        </mat-input-container>
+      </li>
       <button
         mat-raised-button
         class = "center"
         color = "primary"
+        *ngIf = "valid()"
         matTooltip="Fill out all fields to unlock."
         matTooltipPosition="below">Begin search</button>
     </ul>
