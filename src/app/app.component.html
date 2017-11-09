@@ -83,18 +83,20 @@
         matTooltipPosition="below">Begin search</button>
     </mat-card-actions>
   </mat-card>
-  <span id = "buttons"><div><a class="logo" [href]="githubLink">
+  <span id = "buttons">
+    <div>
+    <a class="logo" [href]="regexLink">
+      <button
+        mat-icon-button
+        matTooltip="What are Regular Expressions?"
+        matTooltipPosition="right">
+        <img [src]="questionMarkLogoPath"></button>
+    </a></div><div><a class="logo" [href]="githubLink">
     <button
       mat-icon-button
       matTooltip="View Source"
       matTooltipPosition="right">
       <img [src]="githubLogoPath"></button>
-  </a></div><div><a class="logo" [href]="regexLink">
-    <button
-      mat-icon-button
-      matTooltip="What are Regular Expressions?"
-      matTooltipPosition="right">
-      <img [src]="questionMarkLogoPath"></button>
   </a></div></span>
   </div>
 </span>
