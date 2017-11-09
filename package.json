@@ -3,7 +3,8 @@
   "version": "0.0.2",
   "license": "Beerware",
   "scripts": {
-    "build": "ng build && mv dist/* .",
+    "build": "ng build",
+    "postinstall": "ng build",
     "start": "node server.js"
   },
   "private": false,
