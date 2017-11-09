@@ -6,7 +6,7 @@ import { NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule,
          ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule,
-         MatCheckboxModule,
+         MatSlideToggleModule,
          MatInputModule,
          MatSnackBarModule,
          MatCardModule,
@@ -14,7 +14,6 @@ import { MatButtonModule,
          MatSelectModule,
          MatSliderModule} from '@angular/material';
 import { ClipboardModule } from 'ngx-clipboard';
-import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -28,6 +27,7 @@ import 'hammerjs';
     ReactiveFormsModule,
     //Material
     MatButtonModule,
+    MatSlideToggleModule,
     MatInputModule,
     MatCardModule,
     MatSnackBarModule,

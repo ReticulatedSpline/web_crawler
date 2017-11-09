@@ -1,84 +1,100 @@
-<span id= "parent">
+<span id="parent">
   <div>
   <mat-card
   class="card">
-  <h2 style = "padding-left: 2em">Web Crawler v0.1</h2>
+  <mat-card-header>
+    <h2>Web Crawler v0.2</h2>
+  </mat-card-header>
+  <mat-card-content>
     <ul class = "list">
       <li>
         <mat-input-container
-          class = "cardItem">
+          class = "cardItem, fullWidth">
           <input
             matInput
             type = "url"
             matTooltip="Where should the search begin?"
-            placeholder="Root Site URL">
+            matTooltipPosition="left"
+            placeholder="Root Site URL"
+            [(value)] = "root">
         </mat-input-container>
       </li><li>
         <h4>Search depth</h4>
-        <mat-slider></mat-slider>
+        <mat-slider
+          class = "fullWidth"
+          min = "1"
+          max = "100"
+          tickInterval = "10"
+          thumb-label = "true"
+          matTooltip="How many links should I follow?"
+          matTooltipPosition="left"
+          [(value)] = "depth"></mat-slider>
       </li><li>
         <h4>Search for...</h4>
       </li><li>
-        <mat-checkbox
-         labelPosition = "after">Email</mat-checkbox>
+        <mat-slide-toggle
+         labelPosition = "after"
+         [(ngModel)]="email">Emails</mat-slide-toggle>
       </li><li>
-        <mat-checkbox
-        labelPosition = "after">Phone Numbers</mat-checkbox>
+        <mat-slide-toggle
+        labelPosition = "after"
+        [(ngModel)]="phone">Phone Numbers</mat-slide-toggle>
       </li><li>
-        <mat-checkbox
-        labelPosition = "after">Addresses</mat-checkbox>
-      </li><li><span>
-        <h4
-        style = "display: inline;"
-        matTooltip="Must be a valid regular expression.">
-        Add a custom search target </h4>
-        <button
-          mat-mini-fab
-          class="button"
-          color="accent"
-          (click) = "addRegex()"
-          matTooltip="Add a search string"
-          matTooltipPosition="left">+</button>
-        <button
-          mat-mini-fab
-          class="button"
-          color="primary"
-          (click) = "removeRegex()"
-          matTooltip="Remove a search string"
-          matTooltipPosition="left">-</button>
-      </span></li>
+        <mat-slide-toggle
+        labelPosition = "after"
+        [(ngModel)]="address">Addresses [Experimental]</mat-slide-toggle>
+      </li>
       <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
         <mat-input-container
-          class = "cardItem">
+          id = "nameWidth">
           <input
             matInput
             [(ngModel)] = "regexes[i].name"
             placeholder="Name">
         </mat-input-container>
         <mat-input-container
-          class = "cardItem">
+          id = "expWidth">
           <input
             matInput
             [(ngModel)] = "regexes[i].placeholder"
             placeholder="Text Pattern">
         </mat-input-container>
       </li>
+    </ul>
+    </mat-card-content>
+    <mat-card-actions>
       <button
         mat-raised-button
-        class = "center"
+        color="warn"
+        (click) = "addRegex()"
+        matTooltip="Add a Regular Expression pattern to look for."
+        matTooltipPosition="below">Add Search Target</button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click) = "removeRegex()"
+        matTooltip="Remove the bottommost text pattern."
+        matTooltipPosition="below">Remove Search Target</button>
+      <button
+        mat-raised-button
         color = "primary"
-        *ngIf = "valid()"
+        [disabled] = "!valid()"
         matTooltip="Fill out all fields to unlock."
         matTooltipPosition="below">Begin search</button>
-    </ul>
+    </mat-card-actions>
   </mat-card>
-
-  <a id="github" [href]="githubLink">
+  <span id = "buttons"><div><a class="logo" [href]="githubLink">
     <button
       mat-icon-button
       matTooltip="View Source"
-      matTooltipPosition="right"><img
-      [src]="githubLogoPath"></button>
-  </a>
+      matTooltipPosition="right">
+      <img [src]="githubLogoPath"></button>
+  </a></div><div><a class="logo" [href]="regexLink">
+    <button
+      mat-icon-button
+      matTooltip="What are Regular Expressions?"
+      matTooltipPosition="right">
+      <img [src]="questionMarkLogoPath"></button>
+  </a></div></span>
   </div>
 </span>

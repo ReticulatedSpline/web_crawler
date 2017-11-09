@@ -2,29 +2,44 @@ h3 {
   font-weight: lighter;
 }
 
-#parent {
-  margin-top: 5%;
-  display: flex;
-  justify-content: center;
+#actions {
+  margin-top: 2%;
 }
 
-#github {
-  margin-right: auto;
-  margin-left: 1em;
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
-}
-
-#topButton {
-  margin-bottom: 1em;
+#buttons {
+  display: inline-block;
 }
 
 #cardHeader {
   margin-bottom: 2%;
 }
 
-#actions {
-  margin-top: 2%;
+#expWidth {
+  width: 250px;
+}
+
+#header {
+  font-size: 50;
+  font-weight: bold;
+  border-bottom: 2px solid grey;
+}
+
+#mailTo {
+  color: black;
+}
+
+#nameWidth {
+  width: 100px;
+}
+
+#parent {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+#topButton {
+  margin-bottom: 1em;
 }
 
 #resultList {
@@ -36,14 +51,6 @@ h3 {
 #resultBorder {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-}
-
-#mailTo {
-  color: black;
-}
-
-.list li {
-  list-style-type: none;
 }
 
 .button {
@@ -62,4 +69,19 @@ h3 {
 
 .cardItem {
   display: inline-block;
+}
+
+.fullWidth {
+  width: 350px;
+}
+
+.logo {
+  margin-right: auto;
+  margin-left: 1em;
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+li {
+  list-style-type: none;
 }

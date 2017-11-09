@@ -6,13 +6,13 @@ import { FormsModule,
          FormArray,
          Validators } from '@angular/forms';
 import {MatButtonModule,
-        MatCheckboxModule,
+        MatSlideToggleModule,
         MatInputModule,
         MatSnackBar,
         MatCardModule,
         MatSelectModule,
         MatSliderModule} from '@angular/material';
-import {Hammer} from 'hammerjs';
+import 'hammerjs';
 import {Regex} from './regex';
 
 @Component({
@@ -29,6 +29,8 @@ export class AppComponent {
   public email: boolean;
   public phone: boolean;
   public address: boolean;
+  public depth: number;
+  public root: string;
 
   constructor(public snackBar: MatSnackBar) {
     this.submitted = false;
@@ -36,6 +38,8 @@ export class AppComponent {
     this.email = true;
     this.phone = true;
     this.address = false;
+    this.depth = 1;
+    this.root = "";
   }
 
   addRegex() : void {
@@ -48,7 +52,9 @@ export class AppComponent {
 
   valid() : boolean {
     for (let regex of this.regexes) {
-      if (!regex) {
+      if (regex.name === "" ||
+          regex.expr === "" ||
+          this.root === "") {
         return false;
       }
     }
@@ -72,7 +78,9 @@ export class AppComponent {
   }
 
   public githubLogoPath = "https://assets-cdn.github.com/favicon.ico";
+  public questionMarkLogoPath = "http://www.act.org/content/dam/act/unsecured/Images/icons/icon-question.png";
   public githubLink = "https://github.com/ReticulatedSpline/Web-Crawler";
+  public regexLink = "https://www.w3schools.com/jsref/jsref_obj_regexp.asp"
   private emailExpr = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
   private phoneExpr = "^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$";
   private addressExpr = "\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\.";
