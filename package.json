@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
-    "postinstall": "npm install && ng build && mv dist/*",
+    "postinstall": "ng build && mv dist/*",
     "start": "node server.js"
   },
   "private": false,
