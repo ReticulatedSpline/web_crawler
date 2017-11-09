@@ -4,10 +4,8 @@
   "license": "Beerware",
   "scripts": {
     "ng": "ng",
-    "preinstall": "npm install",
     "build": "ng build",
     "start": "node server.js",
-    "postinstall": "ng build && mv dist/* ."
   },
   "private": false,
   "dependencies": {
