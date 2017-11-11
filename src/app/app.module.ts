@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 //for Angular material UI
-import { NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,
          ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule,
@@ -21,7 +21,7 @@ import { ClipboardModule } from 'ngx-clipboard';
   ],
   imports: [
     BrowserModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     //Forms
     FormsModule,
     ReactiveFormsModule,
