@@ -1,22 +1,21 @@
-<span id="parent">
-  <div>
+<span id="parent" *ngIf = "!submitted">
   <mat-card
   class="card">
   <mat-card-header>
-    <h2>Web Crawler v0.2</h2>
+    <h2>Web Crawler v0.3</h2>
   </mat-card-header>
   <mat-card-content>
     <ul class = "list">
       <li>
         <mat-input-container
-          class = "cardItem, fullWidth">
+          class = "cardItem, fullWidth"
+          matTooltip="Where should the search begin?"
+          matTooltipPosition="left">
           <input
             matInput
             type = "url"
-            matTooltip="Where should the search begin?"
-            matTooltipPosition="left"
-            placeholder="Root Site URL"
-            [(value)] = "root">
+            [(ngModel)] = "root"
+            placeholder="Root Site URL">
         </mat-input-container>
       </li><li>
         <h4>Search depth</h4>
@@ -78,9 +77,11 @@
       <button
         mat-raised-button
         color = "primary"
+        (keyup)="onKey(rootTrigger)"
         [disabled] = "!valid()"
         matTooltip="Fill out all fields to unlock."
-        matTooltipPosition="below">Begin search</button>
+        matTooltipPosition="below"
+        (click) = "submit()">Begin search</button>
     </mat-card-actions>
   </mat-card>
   <span id = "buttons">
@@ -98,5 +99,48 @@
       matTooltipPosition="right">
       <img [src]="githubLogoPath"></button>
   </a></div></span>
-  </div>
+</span>
+
+<span id="parent" *ngIf = "submitted">
+  <mat-card
+  class="card">
+  <mat-card-header>
+    <h2>Web Crawler v0.2</h2>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="warn"
+        matTooltip="Emails will be seperated by commas"
+        matTooltipPosition="below">Copy list to clipboard</button>
+      <button
+        mat-raised-button
+        color="warn"
+        matTooltip="CSV files can be opened by any spreadsheet software"
+        matTooltipPosition="below">Download as CSV</button>
+      <button
+        mat-raised-button
+        color="warn"
+        matTooltip="Create an email with found addresses"
+        matTooltipPosition="below">Open as email</button>
+      <button
+        mat-raised-button
+        color = "primary"
+        (click) = "submitted = false"
+        matTooltip="Try another query"
+        matTooltipPosition="below"
+        >Restart</button>
+    </mat-card-actions>
+</mat-card>
+<span id = "buttons">
+  <div><a class="logo" [href]="githubLink">
+  <button
+    mat-icon-button
+    matTooltip="View Source"
+    matTooltipPosition="right">
+    <img [src]="githubLogoPath"></button>
+</a></div></span>
 </span>
