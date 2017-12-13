@@ -54,6 +54,7 @@ app.use(express.static(__dirname + '/dist'));
               + "Root: " + pagesToVisit[0] + "\n"
               + "Targets: " + targets);
     crawl();
+
     return regexes;
   });
 

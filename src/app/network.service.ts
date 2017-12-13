@@ -9,11 +9,12 @@ import 'rxjs/add/operator/map';
 export class NetworkService {
 
   apiStart : string = "http://localhost:8080/init";
-  apiFetch : string = "http://localhost:8080/results";
 
+  //inject Http singleton
   constructor(private http:Http) {
   }
 
+  //send a POST request to the server to process our request
   start(url : string, depth: number, regexes: Regex[]) {
       let body = {
          "url": url,
@@ -22,11 +23,6 @@ export class NetworkService {
       };
 
       return this.http.post(this.apiStart, body)
-      .subscribe(res => res.json);
-  }
-
-  get() {
-    return this.http.get(this.apiFetch)
-    .map(res => res.json);
+                      .subscribe(res => res.json);
   }
 }
