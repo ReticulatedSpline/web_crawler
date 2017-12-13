@@ -13,13 +13,18 @@ import { MatButtonModule,
          MatTooltipModule,
          MatSelectModule,
          MatSliderModule} from '@angular/material';
+import {HttpModule} from '@angular/http';
 import { ClipboardModule } from 'ngx-clipboard';
+
+import {NetworkService} from './network.service';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    //Network
+    HttpModule,
     BrowserModule,
     BrowserAnimationsModule,
     //Forms
@@ -37,7 +42,7 @@ import { ClipboardModule } from 'ngx-clipboard';
     //Clipboard
     ClipboardModule,
   ],
-  providers: [],
+  providers: [NetworkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

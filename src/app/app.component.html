@@ -1,8 +1,9 @@
+<!-- Unsubmitted Form ------------------------------>
 <span id="parent" *ngIf = "!submitted">
   <mat-card
   class="card">
   <mat-card-header>
-    <h2>Web Crawler v0.3</h2>
+    <h2>Web Crawler v0.4</h2>
   </mat-card-header>
   <mat-card-content>
     <ul class = "list">
@@ -22,12 +23,13 @@
         <mat-slider
           class = "fullWidth"
           min = "1"
+          value = "10"
           max = "100"
-          tickInterval = "10"
+          tick-interval = "5"
           thumb-label = "true"
           matTooltip="How many links should I follow?"
           matTooltipPosition="left"
-          [(value)] = "depth"></mat-slider>
+          [(ngModel)] = "depth"></mat-slider>
       </li><li>
         <h4>Search for...</h4>
       </li><li>
@@ -49,6 +51,8 @@
           <input
             matInput
             [(ngModel)] = "regexes[i].name"
+            matTooltip="Give the custom pattern a name."
+            matTooltipPosition="left"
             placeholder="Name">
         </mat-input-container>
         <mat-input-container
@@ -56,6 +60,8 @@
           <input
             matInput
             [(ngModel)] = "regexes[i].placeholder"
+            matTooltip="Provide the regular expression without slashes or flags."
+            matTooltipPosition="left"
             placeholder="Text Pattern">
         </mat-input-container>
       </li>
@@ -101,21 +107,31 @@
   </a></div></span>
 </span>
 
+<!-- Submitted Form ------------------------------->
 <span id="parent" *ngIf = "submitted">
   <mat-card
   class="card">
   <mat-card-header>
-    <h2>Web Crawler v0.2</h2>
+    <h2>Search Results</h2>
   </mat-card-header>
   <mat-card-content>
-
+    <ul class = list>
+      <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
+        <h3>{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}}</h3>
+        <textarea
+          matInput
+          readonly
+          matTextareaAutosize
+          matAutosizeMinRows="2"
+          matAutosizeMaxRows="5">{{regex.found}}</textarea>
+    </ul>
   </mat-card-content>
     <mat-card-actions>
       <button
         mat-raised-button
         color="warn"
         matTooltip="Emails will be seperated by commas"
-        matTooltipPosition="below">Copy list to clipboard</button>
+        matTooltipPosition="below">Copy to clipboard</button>
       <button
         mat-raised-button
         color="warn"
@@ -129,12 +145,14 @@
       <button
         mat-raised-button
         color = "primary"
-        (click) = "submitted = false"
+        (click) = "reset()"
         matTooltip="Try another query"
         matTooltipPosition="below"
         >Restart</button>
     </mat-card-actions>
 </mat-card>
+
+<!-- Side Buttons --------------------------------->
 <span id = "buttons">
   <div><a class="logo" [href]="githubLink">
   <button

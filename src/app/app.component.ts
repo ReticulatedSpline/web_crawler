@@ -1,5 +1,5 @@
 import { Component,
-         OnInit } from '@angular/core';
+         OnInit,} from '@angular/core';
 import { FormsModule,
          ReactiveFormsModule,
          FormControl,
@@ -13,7 +13,9 @@ import {MatButtonModule,
         MatSelectModule,
         MatSliderModule} from '@angular/material';
 import 'hammerjs';
+import {NetworkService} from './network.service';
 import {Regex} from './regex';
+import {Observable} from 'rxjs/observable';
 
 @Component({
   selector: 'app-root',
@@ -32,14 +34,15 @@ export class AppComponent {
   public depth: number;
   public root: string;
 
-  constructor(public snackBar: MatSnackBar) {
-    this.submitted = false;
+  constructor(public snackBar: MatSnackBar,
+              private networkService: NetworkService) {
     this.regexes = [];
+    this.submitted = false;
     this.email = true;
     this.phone = true;
     this.address = false;
     this.depth = 1;
-    this.root = "";
+    this.root = defaultRoot;
   }
 
   addRegex() : void {
@@ -69,8 +72,12 @@ export class AppComponent {
   }
 
   submit() : void {
+    if (this.email) this.regexes.push(new Regex("Email", emailExpr));
+    if (this.phone) this.regexes.push(new Regex("Phone", phoneExpr));
+    if (this.address) this.regexes.push(new Regex("Address", addressExpr));
     this.submitted = true;
-    }
+    this.networkService.start(this.root, this.depth, this.regexes);
+  }
 
   setMailTo() : void {
     this.mailLink = String("mailto:?subject=Scraped%20Emails%20&body=");
@@ -78,18 +85,25 @@ export class AppComponent {
     this.submitted = true;
   }
 
-  openSnackbar() : void {
-    this.snackBar.open("Copied to clipboard!", "Close", {
+  copy() {
+    //TODO: add copy functionality
+    this.snackBar.open("Not yet supported!", "Close", {
       duration: 2000,
     });
   }
+
+  reset() {
+    this.regexes = [];
+    this.submitted = false;
+  }
+
   public githubLogoPath = "https://assets-cdn.github.com/favicon.ico";
   public questionMarkLogoPath = "http://www.act.org/content/dam/act/unsecured/Images/icons/icon-question.png";
   public githubLink = "https://github.com/ReticulatedSpline/Web-Crawler";
   public regexLink = "https://www.w3schools.com/jsref/jsref_obj_regexp.asp"
 }
 
-const emailExpr = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
-const phoneExpr = "^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$";
+const defaultRoot = "https://www.google.com/search?q=colorado%20physicians";
+const emailExpr = "[A-Z0-9.]+@[A-Z0-9.-]+\.[A-Z]{2,}([A-Z]{2,})?";
+const phoneExpr = "(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}";
 const addressExpr = "\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\.";
-const urlRegex = "[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?;"
