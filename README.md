@@ -17,7 +17,7 @@ UI elements provided by [Angular Material.](https://material.angular.io/)
 
 [NPM](https://www.npmjs.com/) was used to manage Node packages, including [Cheerio](https://www.npmjs.com/package/cheerio) for DOM scraping and [Express](https://www.npmjs.com/package/express) for serving the static transpiled build version.
 
-# Development server
+# Launching
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-Run `ng build` to transpile to the /dist folder. It can then be served with `npm start` on `http:localhost:8080`.
+Run `ng build` to transpile to the /dist folder. It can then be served with `npm start` on `http:localhost:8080`. The latest version of the origin branch is live [Here](https://web-crawler-proto.herokuapp.com/). It may take a few minutes to spool up from cold boot.

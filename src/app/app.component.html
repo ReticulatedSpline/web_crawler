@@ -19,13 +19,13 @@
             placeholder="Root Site URL">
         </mat-input-container>
       </li><li>
-        <h4>Page quota:</h4>
+        <h4>Page quota</h4>
         <mat-slider
           class = "fullWidth"
           min = "1"
           value = "10"
           max = "100"
-          tick-interval = "10"
+          tick-interval = "5"
           thumb-label = "true"
           matTooltip="How many links should I follow?"
           matTooltipPosition="left"
@@ -122,14 +122,14 @@
   </mat-progress-bar>
       <ul class = list>
         <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
-          <h3 class = "header">{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}}</h3>
+          <h3>{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}}</h3>
           <textarea
             matInput
             readonly
             class = "highlight"
             matTextareaAutosize
             matAutosizeMinRows="3"
-            matAutosizeMaxRows="15">{{regex.found}}</textarea>
+            matAutosizeMaxRows="5">{{regex.found}}</textarea>
       </ul>
     </mat-card-content>
       <mat-card-actions>
@@ -149,7 +149,8 @@
                 mat-raised-button
                 color="warn"
                 matTooltip="Create an email with found addresses"
-                matTooltipPosition="below">Open as email</button></a>
+                matTooltipPosition="below">Open as email</button>
+        </a>
         <button
           mat-raised-button
           color = "primary"
@@ -158,8 +159,7 @@
           matTooltipPosition="below"
           >Restart</button>
       </mat-card-actions>
-    </mat-card>
-</span>
+</mat-card>
 
 <!-- Side Buttons --------------------------------->
 <span id = "buttons">

@@ -101,7 +101,7 @@ export class AppComponent {
       this.mailLink += "%0D%0A----------";
       this.mailLink += regex.name.endsWith('s') ?
                               regex.name + "es" : regex.name + "s";
-      this.mailLink += "----------\n";
+      this.mailLink += "----------%0D%0A";
       this.mailLink += regex.found + "%0D%0A";
     }
   }
