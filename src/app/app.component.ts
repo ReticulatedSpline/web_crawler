@@ -79,10 +79,12 @@ export class AppComponent {
     if (this.address) this.regexes.push(new Regex("Address", addressExpr));
     this.submitted = true;
     console.log("Submitting request to server...");
-    // this probably violates every convention of angular, javascript, and async programming. Also the 80 character limit. Who's going to stop me?
+    // this probably violates every convention of angular, javascript, and async
+    // programming. Also the 80 character limit. Who's going to stop me?
     let parent = this;
     this.networkService.start(this.root, this.depth, this.regexes, parent)
                        .subscribe(res => {
+                         console.log("Response recieved!");
                          let parsed = res.json();
                          parsed.forEach(function (item, index) {
                            parent.regexes[index] = item;
@@ -95,7 +97,10 @@ export class AppComponent {
   setMailTo() : void {
     this.mailLink = String("mailto:?subject=Scraped%20Emails%20&body=");
     for (let regex of this.regexes) {
-      this.mailLink += "----------" + regex.name + "----------\n";
+      this.mailLink += "\n----------";
+      this.mailLink += regex.name.endsWith('s') ?
+                              regex.name + "es" : regex.name + "s";
+      this.mailLink += "----------\n";
       this.mailLink += regex.found + "\n\n";
     }
   }
@@ -119,7 +124,7 @@ export class AppComponent {
   public regexLink = "https://www.w3schools.com/jsref/jsref_obj_regexp.asp"
 }
 
-const defaultRoot = "http://www.cumedicine.us/";
-const emailExpr = "([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}";
-const phoneExpr = "\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})";
-const addressExpr = "*([0-9]*)\s((NW|SW|SE|NE|S|N|E|W))?(\.*)((NW|SW|SE|NE|S|N|E|W))?((#|APT|BSMT|BLDG|DEPT|FL|FRNT|HNGR|KEY|LBBY|LOT|LOWR|OFC|PH|PIER|REAR|RM|SIDE|SLIP|SPC|STOP|STE|TRLR|UNIT|UPPR|\,)[^,]*)(\,)([\s\w]*)";
+const defaultRoot = "http://www.d.umn.edu/~sholtz/";
+const emailExpr = "[A-Z0-9.]+@[A-Z0-9.-]+\.[A-Z]{2,}([A-Z]{2,})?";
+const phoneExpr = "(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}";
+const addressExpr = "\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\.";

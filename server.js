@@ -128,13 +128,13 @@ function validLink(link) {
 }
 
 /**
-* Search for regex matches after escaping them.
+* Search for regex matches.
 **/
 function scrape(page) {
   let bodyText = page.html().toString();
   console.log("-----------------------------------------------");
   for (let regex of regexes) {
-    let regexp = new RegExp(regex.expr.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'ig');
+    let regexp = new RegExp(regex.expr, 'ig');
     let results = bodyText.match(regexp);
     if (results) {
       for (let instance of results) {
