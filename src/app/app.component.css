@@ -75,6 +75,12 @@ h3, h4 {
   width: 350px;
 }
 
+.highlight {
+  padding-top: .25rem;
+  margin-top: .25rem;
+  background-color: powderblue;
+}
+
 .logo {
   margin-right: auto;
   margin-left: 1em;

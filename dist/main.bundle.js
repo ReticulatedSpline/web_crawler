@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "h3, h4 {\r\n  font-weight: lighter;\r\n}\r\n\r\n#actions {\r\n  margin-top: 2%;\r\n}\r\n\r\n#buttons {\r\n  display: inline-block;\r\n}\r\n\r\n#cardHeader {\r\n  margin-bottom: 2%;\r\n}\r\n\r\n#expWidth {\r\n  width: 250px;\r\n}\r\n\r\n#header {\r\n  font-size: 50;\r\n  font-weight: bold;\r\n  border-bottom: 2px solid grey;\r\n}\r\n\r\n#mailTo {\r\n  color: black;\r\n}\r\n\r\n#nameWidth {\r\n  width: 100px;\r\n}\r\n\r\n#parent {\r\n  margin-top: 5%;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n}\r\n\r\n#topButton {\r\n  margin-bottom: 1em;\r\n}\r\n\r\n#resultList {\r\n  padding-left: 1em;\r\n  padding-top: 4%;\r\n  padding-bottom: 4%;\r\n}\r\n\r\n#resultBorder {\r\n  border-top: 1px solid black;\r\n  border-bottom: 1px solid black;\r\n}\r\n\r\n.button {\r\n  -webkit-transform: scale(.8);\r\n          transform: scale(.8);\r\n}\r\n\r\n.card {\r\n  display: inline-block;\r\n}\r\n\r\n.center {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  display: block;\r\n}\r\n\r\n.cardItem {\r\n  display: inline-block;\r\n}\r\n\r\n.fullWidth {\r\n  width: 350px;\r\n}\r\n\r\n.logo {\r\n  margin-right: auto;\r\n  margin-left: 1em;\r\n  -webkit-filter: invert(100%);\r\n  filter: invert(100%);\r\n}\r\n\r\nli {\r\n  list-style-type: none;\r\n}\r\n", ""]);
+exports.push([module.i, "h3, h4 {\r\n  font-weight: lighter;\r\n}\r\n\r\n#actions {\r\n  margin-top: 2%;\r\n}\r\n\r\n#buttons {\r\n  display: inline-block;\r\n}\r\n\r\n#cardHeader {\r\n  margin-bottom: 2%;\r\n}\r\n\r\n#expWidth {\r\n  width: 250px;\r\n}\r\n\r\n#header {\r\n  font-size: 50;\r\n  font-weight: bold;\r\n  border-bottom: 2px solid grey;\r\n}\r\n\r\n#mailTo {\r\n  color: black;\r\n}\r\n\r\n#nameWidth {\r\n  width: 100px;\r\n}\r\n\r\n#parent {\r\n  margin-top: 5%;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n}\r\n\r\n#topButton {\r\n  margin-bottom: 1em;\r\n}\r\n\r\n#resultList {\r\n  padding-left: 1em;\r\n  padding-top: 4%;\r\n  padding-bottom: 4%;\r\n}\r\n\r\n#resultBorder {\r\n  border-top: 1px solid black;\r\n  border-bottom: 1px solid black;\r\n}\r\n\r\n.button {\r\n  -webkit-transform: scale(.8);\r\n          transform: scale(.8);\r\n}\r\n\r\n.card {\r\n  display: inline-block;\r\n}\r\n\r\n.center {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  display: block;\r\n}\r\n\r\n.cardItem {\r\n  display: inline-block;\r\n}\r\n\r\n.fullWidth {\r\n  width: 350px;\r\n}\r\n\r\n.highlight {\r\n  padding-top: .5rem;\r\n  margin-top: .5rem;\r\n  background-color: powderblue;\r\n}\r\n\r\n.logo {\r\n  margin-right: auto;\r\n  margin-left: 1em;\r\n  -webkit-filter: invert(100%);\r\n  filter: invert(100%);\r\n}\r\n\r\nli {\r\n  list-style-type: none;\r\n}\r\n", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Unsubmitted Form ------------------------------>\r\n<span id=\"parent\" *ngIf = \"!submitted\">\r\n  <mat-card\r\n  class=\"card\">\r\n  <mat-card-header>\r\n    <h2>Web Crawler v0.9</h2>\r\n  </mat-card-header>\r\n  <mat-card-content>\r\n    <ul class = \"list\">\r\n      <li>\r\n        <mat-input-container\r\n          class = \"cardItem, fullWidth\"\r\n          matTooltip=\"Where should the search begin?\"\r\n          matTooltipPosition=\"left\">\r\n          <input\r\n            matInput\r\n            type = \"url\"\r\n            [(ngModel)] = \"root\"\r\n            placeholder=\"Root Site URL\">\r\n        </mat-input-container>\r\n      </li><li>\r\n        <h4>Search depth</h4>\r\n        <mat-slider\r\n          class = \"fullWidth\"\r\n          min = \"1\"\r\n          value = \"10\"\r\n          max = \"100\"\r\n          tick-interval = \"5\"\r\n          thumb-label = \"true\"\r\n          matTooltip=\"How many links should I follow?\"\r\n          matTooltipPosition=\"left\"\r\n          [(ngModel)] = \"depth\"></mat-slider>\r\n      </li><li>\r\n        <h4>Search for...</h4>\r\n      </li><li>\r\n        <mat-slide-toggle\r\n         labelPosition = \"after\"\r\n         [(ngModel)]=\"email\">Emails</mat-slide-toggle>\r\n      </li><li>\r\n        <mat-slide-toggle\r\n        labelPosition = \"after\"\r\n        [(ngModel)]=\"phone\">Phone Numbers</mat-slide-toggle>\r\n      </li><li>\r\n        <mat-slide-toggle\r\n        labelPosition = \"after\"\r\n        [(ngModel)]=\"address\">Addresses [Experimental]</mat-slide-toggle>\r\n      </li>\r\n      <li *ngFor=\"let regex of regexes; let i = index\" [attr.data-index]=\"i\">\r\n        <mat-input-container\r\n          id = \"nameWidth\">\r\n          <input\r\n            matInput\r\n            [(ngModel)] = \"regexes[i].name\"\r\n            matTooltip=\"Give the custom pattern a name.\"\r\n            matTooltipPosition=\"left\"\r\n            placeholder=\"Name\">\r\n        </mat-input-container>\r\n        <mat-input-container\r\n          id = \"expWidth\">\r\n          <input\r\n            matInput\r\n            [(ngModel)] = \"regexes[i].placeholder\"\r\n            matTooltip=\"Provide the regular expression without slashes or flags.\"\r\n            matTooltipPosition=\"left\"\r\n            placeholder=\"Text Pattern\">\r\n        </mat-input-container>\r\n      </li>\r\n    </ul>\r\n    </mat-card-content>\r\n    <mat-card-actions>\r\n      <button\r\n        mat-raised-button\r\n        color=\"warn\"\r\n        (click) = \"addRegex()\"\r\n        matTooltip=\"Add a Regular Expression pattern to look for.\"\r\n        matTooltipPosition=\"below\">Add Search Target</button>\r\n      <button\r\n        mat-raised-button\r\n        color=\"warn\"\r\n        (click) = \"removeRegex()\"\r\n        matTooltip=\"Remove the bottommost text pattern.\"\r\n        matTooltipPosition=\"below\">Remove Search Target</button>\r\n      <button\r\n        mat-raised-button\r\n        color = \"primary\"\r\n        (keyup)=\"onKey(rootTrigger)\"\r\n        [disabled] = \"!valid()\"\r\n        matTooltip=\"Fill out all fields to unlock.\"\r\n        matTooltipPosition=\"below\"\r\n        (click) = \"submit()\">Begin search</button>\r\n    </mat-card-actions>\r\n  </mat-card>\r\n  <span id = \"buttons\">\r\n    <div>\r\n    <a class=\"logo\" [href]=\"regexLink\">\r\n      <button\r\n        mat-icon-button\r\n        matTooltip=\"What are Regular Expressions?\"\r\n        matTooltipPosition=\"right\">\r\n        <img [src]=\"questionMarkLogoPath\"></button>\r\n    </a></div><div><a class=\"logo\" [href]=\"githubLink\">\r\n    <button\r\n      mat-icon-button\r\n      matTooltip=\"View Source\"\r\n      matTooltipPosition=\"right\">\r\n      <img [src]=\"githubLogoPath\"></button>\r\n  </a></div></span>\r\n</span>\r\n\r\n<!-- Submitted Form ------------------------------->\r\n<span id=\"parent\" *ngIf = \"submitted\">\r\n  <mat-card\r\n  class=\"card\">\r\n  <mat-card-header>\r\n    <h2>Search Results</h2>\r\n  </mat-card-header>\r\n  <mat-card-content>\r\n    <ul class = list>\r\n      <li *ngFor=\"let regex of regexes; let i = index\" [attr.data-index]=\"i\">\r\n        <h3>{{regex.name.endsWith('s') ? regex.name + \"es\" : regex.name + \"s\"}}</h3>\r\n        <textarea\r\n          matInput\r\n          readonly\r\n          matTextareaAutosize\r\n          matAutosizeMinRows=\"2\"\r\n          matAutosizeMaxRows=\"5\">{{regex.found}}</textarea>\r\n    </ul>\r\n  </mat-card-content>\r\n    <mat-card-actions>\r\n      <button\r\n        mat-raised-button\r\n        color=\"warn\"\r\n        matTooltip=\"Emails will be seperated by commas\"\r\n        matTooltipPosition=\"below\">Copy to clipboard</button>\r\n      <button\r\n        mat-raised-button\r\n        color=\"warn\"\r\n        matTooltip=\"CSV files can be opened by any spreadsheet software\"\r\n        matTooltipPosition=\"below\">Download as CSV</button>\r\n      <button\r\n        mat-raised-button\r\n        color=\"warn\"\r\n        matTooltip=\"Create an email with found addresses\"\r\n        matTooltipPosition=\"below\">Open as email</button>\r\n      <button\r\n        mat-raised-button\r\n        color = \"primary\"\r\n        (click) = \"reset()\"\r\n        matTooltip=\"Try another query\"\r\n        matTooltipPosition=\"below\"\r\n        >Restart</button>\r\n    </mat-card-actions>\r\n</mat-card>\r\n\r\n<!-- Side Buttons --------------------------------->\r\n<span id = \"buttons\">\r\n  <div><a class=\"logo\" [href]=\"githubLink\">\r\n  <button\r\n    mat-icon-button\r\n    matTooltip=\"View Source\"\r\n    matTooltipPosition=\"right\">\r\n    <img [src]=\"githubLogoPath\"></button>\r\n</a></div></span>\r\n</span>\r\n"
+module.exports = "<!-- Unsubmitted Form ------------------------------>\r\n<span id=\"parent\" *ngIf = \"!submitted\">\r\n  <mat-card\r\n  class=\"card\">\r\n  <mat-card-header>\r\n    <h2>Web Crawler v0.9</h2>\r\n  </mat-card-header>\r\n  <mat-card-content>\r\n    <ul class = \"list\">\r\n      <li>\r\n        <mat-input-container\r\n          class = \"cardItem, fullWidth\"\r\n          matTooltip=\"Where should the search begin?\"\r\n          matTooltipPosition=\"left\">\r\n          <input\r\n            matInput\r\n            type = \"url\"\r\n            [(ngModel)] = \"root\"\r\n            placeholder=\"Root Site URL\">\r\n        </mat-input-container>\r\n      </li><li>\r\n        <h4>Page quota</h4>\r\n        <mat-slider\r\n          class = \"fullWidth\"\r\n          min = \"1\"\r\n          value = \"10\"\r\n          max = \"100\"\r\n          tick-interval = \"5\"\r\n          thumb-label = \"true\"\r\n          matTooltip=\"How many links should I follow?\"\r\n          matTooltipPosition=\"left\"\r\n          [(ngModel)] = \"depth\"></mat-slider>\r\n      </li><li>\r\n        <h4>Search for...</h4>\r\n      </li><li>\r\n        <mat-slide-toggle\r\n         labelPosition = \"after\"\r\n         [(ngModel)]=\"email\">Emails</mat-slide-toggle>\r\n      </li><li>\r\n        <mat-slide-toggle\r\n        labelPosition = \"after\"\r\n        [(ngModel)]=\"phone\">Phone Numbers</mat-slide-toggle>\r\n      </li><li>\r\n        <mat-slide-toggle\r\n        labelPosition = \"after\"\r\n        [(ngModel)]=\"address\">Addresses [Experimental]</mat-slide-toggle>\r\n      </li>\r\n      <li *ngFor=\"let regex of regexes; let i = index\" [attr.data-index]=\"i\">\r\n        <mat-input-container\r\n          id = \"nameWidth\">\r\n          <input\r\n            matInput\r\n            [(ngModel)] = \"regexes[i].name\"\r\n            matTooltip=\"Give the custom pattern a name.\"\r\n            matTooltipPosition=\"left\"\r\n            placeholder=\"Name\">\r\n        </mat-input-container>\r\n        <mat-input-container\r\n          id = \"expWidth\">\r\n          <input\r\n            matInput\r\n            [(ngModel)] = \"regexes[i].placeholder\"\r\n            matTooltip=\"Provide the regular expression without slashes. 'ig' flags applied automatically.\"\r\n            matTooltipPosition=\"right\"\r\n            placeholder=\"Text Pattern\">\r\n        </mat-input-container>\r\n      </li>\r\n    </ul>\r\n    </mat-card-content>\r\n    <mat-card-actions>\r\n      <button\r\n        mat-raised-button\r\n        color=\"warn\"\r\n        (click) = \"addRegex()\"\r\n        matTooltip=\"Add a Regular Expression pattern to look for.\"\r\n        matTooltipPosition=\"below\">Add Search Target</button>\r\n      <button\r\n        mat-raised-button\r\n        color=\"warn\"\r\n        (click) = \"removeRegex()\"\r\n        matTooltip=\"Remove the bottommost text pattern.\"\r\n        matTooltipPosition=\"below\">Remove Search Target</button>\r\n      <button\r\n        mat-raised-button\r\n        color = \"primary\"\r\n        (keyup)=\"onKey(rootTrigger)\"\r\n        [disabled] = \"!valid()\"\r\n        matTooltip=\"Fill out all fields to unlock.\"\r\n        matTooltipPosition=\"below\"\r\n        (click) = \"submit()\">Begin search</button>\r\n    </mat-card-actions>\r\n  </mat-card>\r\n  <span id = \"buttons\">\r\n    <div>\r\n    <a class=\"logo\" [href]=\"regexLink\">\r\n      <button\r\n        mat-icon-button\r\n        matTooltip=\"What are Regular Expressions?\"\r\n        matTooltipPosition=\"right\">\r\n        <img [src]=\"questionMarkLogoPath\"></button>\r\n    </a></div><div><a class=\"logo\" [href]=\"githubLink\">\r\n    <button\r\n      mat-icon-button\r\n      matTooltip=\"View Source\"\r\n      matTooltipPosition=\"right\">\r\n      <img [src]=\"githubLogoPath\"></button>\r\n  </a></div></span>\r\n</span>\r\n\r\n<!-- Submitted Form ------------------------------->\r\n<span id=\"parent\" *ngIf = \"submitted\">\r\n  <mat-card\r\n  class=\"card\">\r\n  <mat-card-header>\r\n    <h2>Search Results</h2>\r\n  </mat-card-header>\r\n  <mat-card-content>\r\n    <mat-progress-bar\r\n      *ngIf = \"!loaded\"\r\n      color=\"primary\"\r\n      mode=\"indeterminate\">\r\n  </mat-progress-bar>\r\n      <ul class = list>\r\n        <li *ngFor=\"let regex of regexes; let i = index\" [attr.data-index]=\"i\">\r\n          <h3>{{regex.name.endsWith('s') ? regex.name + \"es\" : regex.name + \"s\"}}</h3>\r\n          <textarea\r\n            matInput\r\n            readonly\r\n            class = \"highlight\"\r\n            matTextareaAutosize\r\n            matAutosizeMinRows=\"3\"\r\n            matAutosizeMaxRows=\"5\">{{regex.found}}</textarea>\r\n      </ul>\r\n    </mat-card-content>\r\n      <mat-card-actions>\r\n        <button\r\n          mat-raised-button\r\n          color=\"warn\"\r\n          matTooltip=\"Emails will be seperated by commas\"\r\n          matTooltipPosition=\"below\">Copy to clipboard</button>\r\n        <button\r\n          mat-raised-button\r\n          color=\"warn\"\r\n          matTooltip=\"CSV files can be opened by any spreadsheet software\"\r\n          matTooltipPosition=\"below\">Download as CSV</button>\r\n        <a [href] = \"mailLink\"\r\n              id = \"mailTo\">\r\n              <button\r\n                mat-raised-button\r\n                color=\"warn\"\r\n                matTooltip=\"Create an email with found addresses\"\r\n                matTooltipPosition=\"below\">Open as email</button>\r\n        </a>\r\n        <button\r\n          mat-raised-button\r\n          color = \"primary\"\r\n          (click) = \"reset()\"\r\n          matTooltip=\"Try another query\"\r\n          matTooltipPosition=\"below\"\r\n          >Restart</button>\r\n      </mat-card-actions>\r\n</mat-card>\r\n\r\n<!-- Side Buttons --------------------------------->\r\n<span id = \"buttons\">\r\n  <div><a class=\"logo\" [href]=\"githubLink\">\r\n  <button\r\n    mat-icon-button\r\n    matTooltip=\"View Source\"\r\n    matTooltipPosition=\"right\">\r\n    <img [src]=\"githubLogoPath\"></button>\r\n</a></div></span>\r\n</span>\r\n"
 
 /***/ }),
 
@@ -82,6 +82,7 @@ var AppComponent = (function () {
         this.address = false;
         this.depth = 1;
         this.root = defaultRoot;
+        this.loaded = false;
     }
     AppComponent.prototype.addRegex = function () {
         this.regexes.push(new __WEBPACK_IMPORTED_MODULE_4__regex__["a" /* Regex */]("", ""));
@@ -115,12 +116,26 @@ var AppComponent = (function () {
         if (this.address)
             this.regexes.push(new __WEBPACK_IMPORTED_MODULE_4__regex__["a" /* Regex */]("Address", addressExpr));
         this.submitted = true;
-        this.networkService.start(this.root, this.depth, this.regexes);
+        console.log("Submitting request to server...");
+        // this probably violates every convention of angular, javascript, and async programming. Also the 80 character limit. Who's going to stop me?
+        var parent = this;
+        this.networkService.start(this.root, this.depth, this.regexes, parent)
+            .subscribe(function (res) {
+            var parsed = res.json();
+            parsed.forEach(function (item, index) {
+                parent.regexes[index] = item;
+            });
+            parent.setMailTo();
+            parent.loaded = true;
+        });
     };
     AppComponent.prototype.setMailTo = function () {
         this.mailLink = String("mailto:?subject=Scraped%20Emails%20&body=");
-        this.mailLink += String();
-        this.submitted = true;
+        for (var _i = 0, _a = this.regexes; _i < _a.length; _i++) {
+            var regex = _a[_i];
+            this.mailLink += "----------" + regex.name + "----------\n";
+            this.mailLink += regex.found + "\n\n";
+        }
     };
     AppComponent.prototype.copy = function () {
         //TODO: add copy functionality
@@ -131,6 +146,7 @@ var AppComponent = (function () {
     AppComponent.prototype.reset = function () {
         this.regexes = [];
         this.submitted = false;
+        this.loaded = false;
     };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -138,16 +154,16 @@ var AppComponent = (function () {
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MatSnackBar */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MatSnackBar */],
             __WEBPACK_IMPORTED_MODULE_3__network_service__["a" /* NetworkService */]])
     ], AppComponent);
     return AppComponent;
 }());
 
-var defaultRoot = "https://www.google.com/search?q=colorado%20physicians";
-var emailExpr = "[A-Z0-9.]+@[A-Z0-9.-]+\.[A-Z]{2,}([A-Z]{2,})?";
-var phoneExpr = "(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}";
-var addressExpr = "\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\.";
+var defaultRoot = "http://www.cumedicine.us/";
+var emailExpr = "([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}";
+var phoneExpr = "\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})";
+var addressExpr = "*([0-9]*)\s((NW|SW|SE|NE|S|N|E|W))?(\.*)((NW|SW|SE|NE|S|N|E|W))?((#|APT|BSMT|BLDG|DEPT|FL|FRNT|HNGR|KEY|LBBY|LOT|LOWR|OFC|PH|PIER|REAR|RM|SIDE|SLIP|SPC|STOP|STE|TRLR|UNIT|UPPR|\,)[^,]*)(\,)([\s\w]*)";
 
 
 /***/ }),
@@ -200,13 +216,14 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* ReactiveFormsModule */],
                 //Material
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["e" /* MatSlideToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MatSlideToggleModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["c" /* MatInputModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["b" /* MatCardModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["h" /* MatSnackBarModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["i" /* MatTooltipModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["d" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["i" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["j" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["e" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["g" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["d" /* MatProgressBarModule */],
                 //Clipboard
                 __WEBPACK_IMPORTED_MODULE_7_ngx_clipboard__["a" /* ClipboardModule */],
             ],
@@ -249,14 +266,13 @@ var NetworkService = (function () {
         this.apiStart = "http://localhost:8080/init";
     }
     //send a POST request to the server to process our request
-    NetworkService.prototype.start = function (url, depth, regexes) {
+    NetworkService.prototype.start = function (url, depth, regexes, parent) {
         var body = {
             "url": url,
             "depth": depth,
             "regexes": regexes
         };
-        return this.http.post(this.apiStart, body)
-            .subscribe(function (res) { return res.json; });
+        return this.http.post(this.apiStart, body);
     };
     NetworkService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

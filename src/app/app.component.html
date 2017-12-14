@@ -19,7 +19,7 @@
             placeholder="Root Site URL">
         </mat-input-container>
       </li><li>
-        <h4>Search depth</h4>
+        <h4>Page quota</h4>
         <mat-slider
           class = "fullWidth"
           min = "1"
@@ -60,8 +60,8 @@
           <input
             matInput
             [(ngModel)] = "regexes[i].placeholder"
-            matTooltip="Provide the regular expression without slashes or flags."
-            matTooltipPosition="left"
+            matTooltip="Provide the regular expression without slashes. 'ig' flags applied automatically."
+            matTooltipPosition="right"
             placeholder="Text Pattern">
         </mat-input-container>
       </li>
@@ -115,41 +115,50 @@
     <h2>Search Results</h2>
   </mat-card-header>
   <mat-card-content>
-    <ul class = list>
-      <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
-        <h3>{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}}</h3>
-        <textarea
-          matInput
-          readonly
-          matTextareaAutosize
-          matAutosizeMinRows="2"
-          matAutosizeMaxRows="5">{{regex.found}}</textarea>
-    </ul>
-  </mat-card-content>
-    <mat-card-actions>
-      <button
-        mat-raised-button
-        color="warn"
-        matTooltip="Emails will be seperated by commas"
-        matTooltipPosition="below">Copy to clipboard</button>
-      <button
-        mat-raised-button
-        color="warn"
-        matTooltip="CSV files can be opened by any spreadsheet software"
-        matTooltipPosition="below">Download as CSV</button>
-      <button
-        mat-raised-button
-        color="warn"
-        matTooltip="Create an email with found addresses"
-        matTooltipPosition="below">Open as email</button>
-      <button
-        mat-raised-button
-        color = "primary"
-        (click) = "reset()"
-        matTooltip="Try another query"
-        matTooltipPosition="below"
-        >Restart</button>
-    </mat-card-actions>
+    <mat-progress-bar
+      *ngIf = "!loaded"
+      color="primary"
+      mode="indeterminate">
+  </mat-progress-bar>
+      <ul class = list>
+        <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
+          <h3>{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}}</h3>
+          <textarea
+            matInput
+            readonly
+            class = "highlight"
+            matTextareaAutosize
+            matAutosizeMinRows="3"
+            matAutosizeMaxRows="5">{{regex.found}}</textarea>
+      </ul>
+    </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="warn"
+          matTooltip="Emails will be seperated by commas"
+          matTooltipPosition="below">Copy to clipboard</button>
+        <button
+          mat-raised-button
+          color="warn"
+          matTooltip="CSV files can be opened by any spreadsheet software"
+          matTooltipPosition="below">Download as CSV</button>
+        <a [href] = "mailLink"
+              id = "mailTo">
+              <button
+                mat-raised-button
+                color="warn"
+                matTooltip="Create an email with found addresses"
+                matTooltipPosition="below">Open as email</button>
+        </a>
+        <button
+          mat-raised-button
+          color = "primary"
+          (click) = "reset()"
+          matTooltip="Try another query"
+          matTooltipPosition="below"
+          >Restart</button>
+      </mat-card-actions>
 </mat-card>
 
 <!-- Side Buttons --------------------------------->

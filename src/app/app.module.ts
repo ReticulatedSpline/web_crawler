@@ -12,7 +12,8 @@ import { MatButtonModule,
          MatCardModule,
          MatTooltipModule,
          MatSelectModule,
-         MatSliderModule} from '@angular/material';
+         MatSliderModule,
+         MatProgressBarModule} from '@angular/material';
 import {HttpModule} from '@angular/http';
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -39,6 +40,7 @@ import {NetworkService} from './network.service';
     MatTooltipModule,
     MatSelectModule,
     MatSliderModule,
+    MatProgressBarModule,
     //Clipboard
     ClipboardModule,
   ],

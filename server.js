@@ -20,13 +20,13 @@ var linkCount = 0;
   var pagesVisited = {};
   var results = {};
 
-console.log("Listening for requests on 8080...")
-
-// Set up nodeJS listeners & parsers
+// Set up nodeJS listeners, parsers, and request API
 app.use(express.static(__dirname + '/dist'));
 
   // Start the app by listening on the default Heroku port
   app.listen(process.env.PORT || 8080);
+
+  console.log("Listening for requests on 8080...");
 
   // for parsing requests
   app.use(bodyParser.urlencoded({
@@ -48,14 +48,17 @@ app.use(express.static(__dirname + '/dist'));
     let targets = "";
     for (let regex of req.body.regexes) {
       regexes.push(regex);
-      targets += regex.name + ", "
+      targets += regex.name + ", ";
     }
     console.log("Depth: " + maxPages + " pages.\n"
               + "Root: " + pagesToVisit[0] + "\n"
               + "Targets: " + targets);
-    crawl();
-
-    return regexes;
+    var onComplete = function() {
+      console.log("Transmitting results...");
+      res.send(regexes);
+      console.log("Transmission complete.");
+    };
+    crawl(onComplete);
   });
 
 /**
@@ -63,28 +66,28 @@ app.use(express.static(__dirname + '/dist'));
 * Source modified from original by Stephen at netinstructions:
 * http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-javascript-and-node-js/
 **/
-function crawl() {
+function crawl(callback) {
   // Exit if target depth reached
   if (Object.keys(pagesVisited).length >= maxPages) {
     console.log("Reached target search depth!")
     console.log("*** Search Query Completed! ***");
-    return;
+    callback();
 
     // Exit if page stack is empty
   } else if (pagesToVisit.length == 0) {
     console.log("Search stack emptied!");
     console.log("*** Search Query Completed! ***");
-    return;
+    callback();
 
     //else process the page
   } else {
     var nextPage = pagesToVisit.pop();
     if (nextPage in pagesVisited) {
       // We've already visited this page, so repeat the crawl
-      crawl();
+      crawl(callback);
     } else {
       // New page we haven't visited
-      if (nextPage != null && nextPage != "") visitPage(nextPage);
+      if (nextPage != null && nextPage != "") visitPage(nextPage, callback);
     }
   }
 }
@@ -92,13 +95,13 @@ function crawl() {
 /**
 * Control actions taken on each visited page.
 **/
-function visitPage(url) {
+function visitPage(url, callback) {
   console.log("Visiting page " + Object.keys(pagesVisited).length + ":\n" + url);
   pagesVisited[url] = true;
   header.get(url, function(error, response, body) {
     if (response.statusCode !== 200) {
-      console.log("Dead link at " + url + "!");
-      crawl();
+      console.log("Unresponsive link!");
+      crawl(callback);
       return;
     }
     // Parse the document body
@@ -107,7 +110,7 @@ function visitPage(url) {
     if (linkCount < maxPages) {
       collectLinks(page, url);
     }
-    crawl();
+    crawl(callback);
   });
 }
 
@@ -125,13 +128,13 @@ function validLink(link) {
 }
 
 /**
-* Search for regex matches.
+* Search for regex matches after escaping them.
 **/
 function scrape(page) {
   let bodyText = page.html().toString();
   console.log("-----------------------------------------------");
   for (let regex of regexes) {
-    let regexp = new RegExp(regex.expr, 'ig');
+    let regexp = new RegExp(regex.expr.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'ig');
     let results = bodyText.match(regexp);
     if (results) {
       for (let instance of results) {
