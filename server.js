@@ -69,14 +69,12 @@ app.use(express.static(__dirname + '/dist'));
 function crawl(callback) {
   // Exit if target depth reached
   if (Object.keys(pagesVisited).length >= maxPages) {
-    console.log("Reached target search depth!")
-    console.log("*** Search Query Completed! ***");
+    console.log("Reached target search depth!");
     callback();
 
     // Exit if page stack is empty
   } else if (pagesToVisit.length == 0) {
     console.log("Search stack emptied!");
-    console.log("*** Search Query Completed! ***");
     callback();
 
     //else process the page
@@ -192,6 +190,7 @@ function collectLinks(page, url) {
 * TODO: Fix this horrible hack ¯\_(ツ)_/¯
 **/
 function reset() {
+  console.log("[Flow] Resetting Globals");
   linkCount = 0;
   maxPages = 1;
   pagesToVisit = [];

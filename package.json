@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
+    "preinstall": "ng set warnings.typescriptMismatch=false",
     "postinstall": "ng build --prod -aot -v",
     "build": "ng build"
   },

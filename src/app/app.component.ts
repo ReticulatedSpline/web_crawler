@@ -97,11 +97,12 @@ export class AppComponent {
   setMailTo() : void {
     this.mailLink = String("mailto:?subject=Scraped%20Emails%20&body=");
     for (let regex of this.regexes) {
-      this.mailLink += "\n----------";
+      // %0D%0A is an URI encoded newline and carriage return char
+      this.mailLink += "%0D%0A----------";
       this.mailLink += regex.name.endsWith('s') ?
                               regex.name + "es" : regex.name + "s";
       this.mailLink += "----------\n";
-      this.mailLink += regex.found + "\n\n";
+      this.mailLink += regex.found + "%0D%0A";
     }
   }
 
