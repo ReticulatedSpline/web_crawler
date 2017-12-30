@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 export class NetworkService {
 
-  apiStart : string = "http://localhost:8080/init";
+  apiStart : string = "http://web-crawler-proto.herokuapp.com/init";
   //inject Http singleton
   constructor(private http:Http) {
   }
