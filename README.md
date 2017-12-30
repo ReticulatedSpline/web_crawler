@@ -11,13 +11,19 @@ This would not have been possible without Stephen's tutorial on [NetInstructions
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2.
 
-Clipboard functionality provided with [ngx-clipboard.](https://github.com/maxisam/ngx-clipboard)
-
 UI elements provided by [Angular Material.](https://material.angular.io/)
 
 [NPM](https://www.npmjs.com/) was used to manage Node packages, including [Cheerio](https://www.npmjs.com/package/cheerio) for DOM scraping and [Express](https://www.npmjs.com/package/express) for serving the static transpiled build version.
+[ngx-clipboard.](https://github.com/maxisam/ngx-clipboard) for clipboard functionality.
 
 # Launching
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-Run `ng build` to transpile to the /dist folder. It can then be served with `npm start` on `http:localhost:8080`. The latest version of the origin branch is live [Here](https://web-crawler-proto.herokuapp.com/). It may take a few minutes to spool up from cold boot.
+Run `ng build` to transpile to the /dist folder. It can then be served with `npm start` on `http:localhost:8080`. The latest version of the origin branch is live [Here](http://web-crawler-proto.herokuapp.com/). It may take a few minutes to spool up from cold boot.
+
+# Usage
+
+![Web scraper UI](http://i65.tinypic.com/nlu8n6.png)
+
+The root site is where the search starts. Quota is the number of pages to process.
+You can specify searching for email, phone, or address regexes, or add custom targets.
