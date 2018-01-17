@@ -42,7 +42,7 @@ export class AppComponent {
     this.email = true;
     this.phone = true;
     this.external = true;
-    this.depth = 1;
+    this.depth = 10;
     this.root = defaultRoot;
     this.loaded = false;
   }
