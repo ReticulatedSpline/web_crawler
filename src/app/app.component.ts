@@ -30,7 +30,7 @@ export class AppComponent {
   public submitted : boolean;
   public email: boolean;
   public phone: boolean;
-  public address: boolean;
+  public external: boolean;
   public loaded: boolean;
   public depth: number;
   public root: string;
@@ -41,7 +41,7 @@ export class AppComponent {
     this.submitted = false;
     this.email = true;
     this.phone = true;
-    this.address = false;
+    this.external = true;
     this.depth = 1;
     this.root = defaultRoot;
     this.loaded = false;
@@ -76,13 +76,11 @@ export class AppComponent {
   submit() : void {
     if (this.email) this.regexes.push(new Regex("Email", emailExpr));
     if (this.phone) this.regexes.push(new Regex("Phone", phoneExpr));
-    if (this.address) this.regexes.push(new Regex("Address", addressExpr));
     this.submitted = true;
     console.log("Submitting request to server...");
-    // this probably violates every convention of angular, javascript, and async
-    // programming. Also the 80 character limit. Who's going to stop me?
+    // this probably violates every convention of angular, javascript, and async programming. Also the 80 character limit. Who's going to stop me?
     let parent = this;
-    this.networkService.start(this.root, this.depth, this.regexes, parent)
+    this.networkService.start(this.root, this.depth, this.regexes, this.external, parent)
                        .subscribe(res => {
                          console.log("Response recieved!");
                          let parsed = res.json();

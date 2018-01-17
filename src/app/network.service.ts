@@ -13,10 +13,11 @@ export class NetworkService {
   }
 
   //send a POST request to the server to process our request
-  start(url : string, depth: number, regexes: Regex[], parent) {
+  start(url : string, depth: number, regexes: Regex[], external: boolean, parent) {
       let body = {
          "url": url,
          "depth": depth,
+         "external": external,
          "regexes": regexes
       };
 

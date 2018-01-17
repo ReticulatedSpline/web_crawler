@@ -19,7 +19,7 @@
             placeholder="Root Site URL">
         </mat-input-container>
       </li><li>
-        <h4>Page quota</h4>
+        <h4>Page quota:</h4>
         <mat-slider
           class = "fullWidth"
           min = "1"
@@ -27,7 +27,7 @@
           max = "100"
           tick-interval = "5"
           thumb-label = "true"
-          matTooltip="How many links should I follow?"
+          matTooltip="How many pages should I scrape? Allow half a second of processing time per page."
           matTooltipPosition="left"
           [(ngModel)] = "depth"></mat-slider>
       </li><li>
@@ -40,10 +40,14 @@
         <mat-slide-toggle
         labelPosition = "after"
         [(ngModel)]="phone">Phone Numbers</mat-slide-toggle>
-      </li><li>
+      </li><br>
+        <h4>Other options...</h4>
+      <li>
         <mat-slide-toggle
         labelPosition = "after"
-        [(ngModel)]="address">Addresses [Experimental]</mat-slide-toggle>
+        matTooltip="External links point to other websites. If left off, it will only search child pages on the same website (i.e '/about or /contact')."
+        matTooltipPosition="left"
+        [(ngModel)]="external">Follow external links</mat-slide-toggle>
       </li>
       <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
         <mat-input-container
@@ -143,14 +147,12 @@
           color="warn"
           matTooltip="CSV files can be opened by any spreadsheet software"
           matTooltipPosition="below">Download as CSV</button>
-        <a [href] = "mailLink"
-              id = "mailTo">
-              <button
-                mat-raised-button
-                color="warn"
-                matTooltip="Create an email with found addresses"
-                matTooltipPosition="below">Open as email</button>
-        </a>
+        <button
+          href = "mailTo"
+          mat-raised-button
+          color="warn"
+          matTooltip="Create an email with found addresses"
+          matTooltipPosition="below">Open as email</button>
         <button
           mat-raised-button
           color = "primary"
