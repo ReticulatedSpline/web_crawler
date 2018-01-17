@@ -123,7 +123,7 @@ export class AppComponent {
   public regexLink = "https://www.w3schools.com/jsref/jsref_obj_regexp.asp"
 }
 
-const defaultRoot = "http://www.d.umn.edu/~sholtz/";
+const defaultRoot = "http://www.mdbizcon.com";
 const emailExpr = "[A-Z0-9.]+@[A-Z0-9.-]+\.[A-Z]{2,}([A-Z]{2,})?";
 const phoneExpr = "(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}";
 const addressExpr = "\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\.";

@@ -19,6 +19,7 @@ var linkCount = 0;
   var regexes = [];
   var pagesVisited = {};
   var results = {};
+  var followExternal = false;
 
 // Set up nodeJS listeners, parsers, and request API
 app.use(express.static(__dirname + '/dist'));
@@ -43,6 +44,7 @@ app.use(express.static(__dirname + '/dist'));
     reset();
     console.log("Init Recieved!");
     maxPages = req.body.depth;
+    followExternal = req.body.external;
     pagesToVisit.push(req.body.url);
     ++linkCount;
     let targets = "";
