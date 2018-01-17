@@ -31,6 +31,12 @@
           matTooltipPosition="left"
           [(ngModel)] = "depth"></mat-slider>
       </li><li>
+        <mat-slide-toggle
+        labelPosition = "after"
+        matTooltip="External links point to other websites. If left off, it will only search child pages on the same website (i.e '/about or /contact')."
+        matTooltipPosition="left"
+        [(ngModel)]="external">Follow external links</mat-slide-toggle>
+      </li><li>
         <h4>Search for...</h4>
       </li><li>
         <mat-slide-toggle
@@ -40,14 +46,6 @@
         <mat-slide-toggle
         labelPosition = "after"
         [(ngModel)]="phone">Phone Numbers</mat-slide-toggle>
-      </li><br>
-        <h4>Other options...</h4>
-      <li>
-        <mat-slide-toggle
-        labelPosition = "after"
-        matTooltip="External links point to other websites. If left off, it will only search child pages on the same website (i.e '/about or /contact')."
-        matTooltipPosition="left"
-        [(ngModel)]="external">Follow external links</mat-slide-toggle>
       </li>
       <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
         <mat-input-container
@@ -133,7 +131,7 @@
             class = "highlight"
             matTextareaAutosize
             matAutosizeMinRows="3"
-            matAutosizeMaxRows="5">{{regex.found}}</textarea>
+            matAutosizeMaxRows="5">{{regex.found.join(', ')}}</textarea>
       </ul>
     </mat-card-content>
       <mat-card-actions>

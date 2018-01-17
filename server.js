@@ -179,9 +179,20 @@ function collectLinks(page, url) {
        } else if (firstChar !== "h") {
          link = baseUrl + "/" + link;
        }
-       pagesToVisit.push(link);
-       ++linkCount;
-       console.log("Link " + linkCount + ": " + link + " pushed to stack.");
+
+       // if allowed to follow external URLs, push it. Otherwise, check if
+       // external and skip if true
+       if (followExternal) {
+          pagesToVisit.push(link);
+          ++linkCount;
+          console.log("Link " + linkCount + ": " + link + " pushed to stack.");
+       } else if (link.indexOf(baseURL) !== -1) {
+          pagesToVisit.push(link);
+          ++linkCount;
+          console.log("Link " + linkCount + ": " + link + " pushed to stack.");
+       } else {
+         console.log("Link " + link + " skipped because external URLs were not requested.")
+       }
      }
    });
    return;
@@ -190,9 +201,10 @@ function collectLinks(page, url) {
 /**
 * Clear global variables
 * TODO: Fix this horrible hack ¯\_(ツ)_/¯
+* is this even necessary?
 **/
 function reset() {
-  console.log("[Flow] Resetting Globals");
+  console.log("Resetting Globals");
   linkCount = 0;
   maxPages = 1;
   pagesToVisit = [];
