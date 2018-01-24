@@ -28,6 +28,7 @@ export class AppComponent {
   public clipboard : [];
   public formArray : FormArray;
   public mailLink : string;
+  public clipboardText : string;
   public root: string;
   public submitted : boolean;
   public email: boolean;
@@ -47,6 +48,7 @@ export class AppComponent {
     this.depth = 10;
     this.root = defaultRoot;
     this.loaded = false;
+    this.clipboardText = "Results copied to clipboard!";
   }
 
   addRegex() : void {
