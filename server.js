@@ -13,12 +13,6 @@ const header = request.defaults({
     headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'}
 });
 
-const cspPolicy = {
-  'report-uri': '/reporting',
-  'default-src': csp.SRC_NONE,
-  'script-src': [ csp.SRC_SELF, csp.SRC_DATA ]
-};
-
 // global vars
 var linkCount = 0;
   var maxPages = 1;
@@ -32,7 +26,7 @@ var linkCount = 0;
 app.use(express.static(__dirname + '/dist'));
 
   //cspPolicy
-  app.use(cspPolicy);
+  app.use(csp.getCSP(csp.STARTER_OPTIONS));
 
   // Start the app by listening on the default Heroku port
   app.listen(process.env.PORT || 8080);
