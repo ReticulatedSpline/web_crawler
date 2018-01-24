@@ -25,7 +25,7 @@ import {Regex} from './regex';
 export class AppComponent {
 
   public regexes : Regex[];
-  public clipboard : [];
+  public clipboard : string[];
   public formArray : FormArray;
   public mailLink : string;
   public clipboardText : string;
