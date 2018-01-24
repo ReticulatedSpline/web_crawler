@@ -82,6 +82,10 @@ h3, h4 {
   background-color: powderblue;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .logo {
   margin-right: auto;
   margin-left: 1em;

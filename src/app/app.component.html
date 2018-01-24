@@ -124,23 +124,23 @@
     </mat-progress-bar>
       <ul class = list>
         <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
-          <span>
-            <h3>{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}} ({{regex.found.length}})</h3>
-            <button (click) = "openSnackbar(clipboardMessage)"
-               ngxClipboard
-               [cbContent] = "regex.found.toString()"
-               matTooltip = "Emails will be seperated by commas"
-               matTooltipPosition = "right"> Copy</button>
-          </span>
-            <textarea
-              matInput
-              readonly
-              type = "text"
-              class = "highlight"
-              matTextareaAutosize
-              matAutosizeMinRows="3"
-              placeholder="Results will appear here..."
-              matAutosizeMaxRows="5">{{regex.found.join(',  ')}}</textarea>
+          <h3 class = "inline-block">{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}} ({{regex.found.length}})</h3>
+          <button
+             mat-button
+             ngxClipboard
+             class = "inline-block"
+             (click) = "openSnackbar(clipboardMessage)"
+             [cbContent] = "regex.found.toString()"
+             matTooltip = "Emails will be seperated by commas"
+             matTooltipPosition = "right">Copy</button>
+          <textarea
+            matInput
+            readonly
+            type = "text"
+            matTextareaAutosize
+            matAutosizeMinRows="3"
+            placeholder="Results will appear here..."
+            matAutosizeMaxRows="5">{{regex.found.join(',  ')}}</textarea>
           </li>
       </ul>
     </mat-card-content>
