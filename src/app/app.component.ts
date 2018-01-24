@@ -12,8 +12,7 @@ import {MatButtonModule,
         MatCardModule,
         MatSelectModule,
         MatSliderModule,
-        MatProgressBarModule,
-        MatDividerModule} from '@angular/material';
+        MatProgressBarModule} from '@angular/material';
 import 'hammerjs';
 import {NetworkService} from './network.service';
 import {Regex} from './regex';
