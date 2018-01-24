@@ -14,7 +14,9 @@ const header = request.defaults({
 });
 
 const cspPolicy = {
-  'default-src': csp.SRC_SELF,
+  'report-uri': '/reporting',
+  'default-src': csp.SRC_NONE,
+  'script-src': [ csp.SRC_SELF, csp.SRC_DATA ]
 };
 
 // global vars
