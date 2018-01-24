@@ -128,9 +128,9 @@
             <h3>{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}} ({{regex.found.length}})</h3>
             <button (click) = "openSnackbar(clipboardMessage)"
                ngxClipboard
-
-               matTooltip="Emails will be seperated by commas"
-               matTooltipPosition="right"> Copy</button>
+               [cbContent] = "regex.found.toString()"
+               matTooltip = "Emails will be seperated by commas"
+               matTooltipPosition = "right"> Copy</button>
           </span>
             <textarea
               matInput
