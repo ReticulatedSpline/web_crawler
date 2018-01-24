@@ -6,11 +6,16 @@ const express = require('express');
   const URL = require('url-parse');
   const app = express();
   const bodyParser = require('body-parser');
+  const csp = require('content-security-policy');
 
 // spoof user agent
 const header = request.defaults({
     headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'}
 });
+
+const cspPolicy = {
+  'default-src': csp.SRC_SELF,
+};
 
 // global vars
 var linkCount = 0;
