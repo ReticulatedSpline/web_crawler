@@ -129,6 +129,7 @@
              mat-button
              ngxClipboard
              class = "inline-block"
+             id = "copy"
              (click) = "openSnackbar(clipboardMessage)"
              [cbContent] = "regex.found.toString()"
              matTooltip = "Emails will be seperated by commas"
@@ -141,6 +142,7 @@
             matAutosizeMinRows="3"
             placeholder="Results will appear here..."
             matAutosizeMaxRows="5">{{regex.found.join(',  ')}}</textarea>
+          <mat-divider></mat-divider>
           </li>
       </ul>
     </mat-card-content>

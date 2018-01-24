@@ -6,7 +6,6 @@ const express = require('express');
   const URL = require('url-parse');
   const app = express();
   const bodyParser = require('body-parser');
-  const csp = require('content-security-policy');
 
 // spoof user agent
 const header = request.defaults({
@@ -25,8 +24,20 @@ var linkCount = 0;
 // Set up nodeJS listeners, parsers, and request API
 app.use(express.static(__dirname + '/dist'));
 
-  //cspPolicy
-  app.use(csp.getCSP(csp.STARTER_OPTIONS));
+  //CORS
+  var allowCrossDomain = function(req, res, next) {
+      if ('OPTIONS' == req.method) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+        res.send(200);
+      }
+      else {
+        next();
+      }
+  };
+
+  app.use(allowCrossDomain);
 
   // Start the app by listening on the default Heroku port
   app.listen(process.env.PORT || 8080);
