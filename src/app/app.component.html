@@ -128,20 +128,20 @@
           <textarea
             matInput
             readonly
+            #{{regex.name}}
             class = "highlight"
             matTextareaAutosize
             matAutosizeMinRows="3"
             matAutosizeMaxRows="5">{{regex.found.join(',  ')}}</textarea>
+        <button mat-mini-fab
+                color="warn"
+                (click) = "openSnackbar(clipboardMessage)"
+                [ngxClipboard]="{{regex.name}}"
+                matTooltip="Emails will be seperated by commas"
+                matTooltipPosition="right">Basic</button>
       </ul>
     </mat-card-content>
       <mat-card-actions>
-        <button
-          mat-raised-button
-          color="warn"
-          (click) = "openSnackbar(clipboardMessage)"
-          [ngxClipboard]="clipboard"
-          matTooltip="Emails will be seperated by commas"
-          matTooltipPosition="below">Copy to clipboard</button>
         <button
           mat-raised-button
           color="warn"
