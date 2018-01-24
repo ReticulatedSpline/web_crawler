@@ -13,6 +13,7 @@ import {MatButtonModule,
         MatSelectModule,
         MatSliderModule,
         MatProgressBarModule} from '@angular/material';
+import { ClipboardModule } from 'ngx-clipboard';
 import 'hammerjs';
 import {NetworkService} from './network.service';
 import {Regex} from './regex';

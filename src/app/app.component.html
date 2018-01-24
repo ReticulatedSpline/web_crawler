@@ -139,7 +139,7 @@
           mat-raised-button
           color="warn"
           (click) = "openSnackbar(clipboardMessage)"
-          [cbContent]="clipboard"
+          [ngxClipboard]="clipboard"
           matTooltip="Emails will be seperated by commas"
           matTooltipPosition="below">Copy to clipboard</button>
         <button
