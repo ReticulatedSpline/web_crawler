@@ -25,19 +25,21 @@ import {Regex} from './regex';
 export class AppComponent {
 
   public regexes : Regex[];
+  public clipboard : [];
   public formArray : FormArray;
   public mailLink : string;
+  public root: string;
   public submitted : boolean;
   public email: boolean;
   public phone: boolean;
   public external: boolean;
   public loaded: boolean;
   public depth: number;
-  public root: string;
 
   constructor(public snackBar: MatSnackBar,
               private networkService: NetworkService) {
     this.regexes = [];
+    this.clipboard = [];
     this.submitted = false;
     this.email = true;
     this.phone = true;
@@ -88,6 +90,7 @@ export class AppComponent {
                            parent.regexes[index] = item;
                          });
                          parent.setMailTo();
+                         parent.setClipboard();
                          parent.loaded = true;
                        });
   }
@@ -104,9 +107,18 @@ export class AppComponent {
     }
   }
 
-  copy() {
+  setClipboard() : void {
+    for (let regex of this.regexes) {
+      this.clipboard.push("\n----------\n");
+      this.clipboard.push(regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s");
+      this.clipboard.push("\n----------\n");
+      this.clipboard.push(regex.found + "\n");
+    }
+  }
+
+  openSnackbar(text: string) {
     //TODO: add copy functionality
-    this.snackBar.open("Not yet supported!", "Close", {
+    this.snackBar.open(text, "Close", {
       duration: 2000,
     });
   }

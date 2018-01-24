@@ -124,20 +124,22 @@
   </mat-progress-bar>
       <ul class = list>
         <li *ngFor="let regex of regexes; let i = index" [attr.data-index]="i">
-          <h3>{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}}</h3>
+          <h3>{{regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s"}} ({{regex.found.length}})</h3>
           <textarea
             matInput
             readonly
             class = "highlight"
             matTextareaAutosize
             matAutosizeMinRows="3"
-            matAutosizeMaxRows="5">{{regex.found.join(', ')}}</textarea>
+            matAutosizeMaxRows="5">{{regex.found.join(',  ')}}</textarea>
       </ul>
     </mat-card-content>
       <mat-card-actions>
         <button
           mat-raised-button
           color="warn"
+          (click) = openSnackbar("Emails copied to Clipboard!")
+          [cbContent]="clipboard"
           matTooltip="Emails will be seperated by commas"
           matTooltipPosition="below">Copy to clipboard</button>
         <button
@@ -146,7 +148,7 @@
           matTooltip="CSV files can be opened by any spreadsheet software"
           matTooltipPosition="below">Download as CSV</button>
         <button
-          href = "mailTo"
+          routerLink = "mailTo"
           mat-raised-button
           color="warn"
           matTooltip="Create an email with found addresses"
