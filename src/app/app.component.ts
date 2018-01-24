@@ -13,7 +13,6 @@ import {MatButtonModule,
         MatSelectModule,
         MatSliderModule,
         MatProgressBarModule} from '@angular/material';
-import { ClipboardModule } from 'ngx-clipboard';
 import 'hammerjs';
 import {NetworkService} from './network.service';
 import {Regex} from './regex';
@@ -121,7 +120,7 @@ export class AppComponent {
 
   openSnackbar(text: string) {
     //TODO: add copy functionality
-    this.snackBar.open(text, "Close", {
+    this.snackBar.open("Success!", "Close", {
       duration: 2000,
     });
   }
