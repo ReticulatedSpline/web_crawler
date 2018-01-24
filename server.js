@@ -31,6 +31,9 @@ var linkCount = 0;
 // Set up nodeJS listeners, parsers, and request API
 app.use(express.static(__dirname + '/dist'));
 
+  //cspPolicy
+  app.use(cspPolicy);
+
   // Start the app by listening on the default Heroku port
   app.listen(process.env.PORT || 8080);
 
