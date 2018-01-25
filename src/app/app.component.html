@@ -3,7 +3,7 @@
   <mat-card
   class="card">
   <mat-card-header>
-    <h2>Web Crawler v1.0</h2>
+    <h2>Web Crawler v1.1</h2>
   </mat-card-header>
   <mat-card-content>
     <ul class = "list">
@@ -132,7 +132,7 @@
              id = "copy"
              (click) = "openSnackbar(clipboardMessage)"
              [cbContent] = "regex.found.toString()"
-             matTooltip = "Emails will be seperated by commas"
+             matTooltip = "Results will be seperated by commas"
              matTooltipPosition = "right">Copy</button>
           <textarea
             matInput
@@ -150,6 +150,7 @@
         <button
           mat-raised-button
           color="warn"
+          (click) = "download(csvString, 'Scrape.csv', 'text/csv;encoding:utf-8');"
           matTooltip="CSV files can be opened by any spreadsheet software"
           matTooltipPosition="below">Download as CSV</button>
         <button

@@ -1,21 +1,27 @@
-import { Component,
-         OnInit,} from '@angular/core';
-import { FormsModule,
-         ReactiveFormsModule,
-         FormControl,
-         FormArray,
-         Validators } from '@angular/forms';
-import {MatButtonModule,
-        MatSlideToggleModule,
-        MatInputModule,
-        MatSnackBar,
-        MatCardModule,
-        MatSelectModule,
-        MatSliderModule,
-        MatProgressBarModule} from '@angular/material';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormControl,
+  FormArray,
+  Validators
+} from '@angular/forms';
+import {
+  MatButtonModule,
+  MatSlideToggleModule,
+  MatInputModule,
+  MatSnackBar,
+  MatCardModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatProgressBarModule
+} from '@angular/material';
 import 'hammerjs';
-import {NetworkService} from './network.service';
-import {Regex} from './regex';
+import { NetworkService } from './network.service';
+import { Regex } from './regex';
 
 @Component({
   selector: 'app-root',
@@ -24,13 +30,14 @@ import {Regex} from './regex';
 })
 export class AppComponent {
 
-  public regexes : Regex[];
-  public clipboard : string[];
-  public formArray : FormArray;
-  public mailLink : string;
-  public clipboardText : string;
+  public regexes: Regex[];
+  public formArray: FormArray;
+  public clipboard: string[];
+  public csvString: string;
+  public mailLink: string;
+  public clipboardText: string;
   public root: string;
-  public submitted : boolean;
+  public submitted: boolean;
   public email: boolean;
   public phone: boolean;
   public external: boolean;
@@ -38,7 +45,7 @@ export class AppComponent {
   public depth: number;
 
   constructor(public snackBar: MatSnackBar,
-              private networkService: NetworkService) {
+    private networkService: NetworkService) {
     this.regexes = [];
     this.clipboard = [];
     this.submitted = false;
@@ -49,20 +56,21 @@ export class AppComponent {
     this.root = defaultRoot;
     this.loaded = false;
     this.clipboardText = "Results copied to clipboard!";
+    this.csvString = "";
   }
 
-  addRegex() : void {
+  addRegex(): void {
     this.regexes.push(new Regex("", ""));
   }
 
-  removeRegex() : void {
+  removeRegex(): void {
     this.regexes.pop();
   }
 
-  valid() : boolean {
+  valid(): boolean {
     for (let regex of this.regexes) {
       if (regex.name === "" ||
-          regex.expr === "") {
+        regex.expr === "") {
         return false;
       }
     }
@@ -77,7 +85,7 @@ export class AppComponent {
     this.valid();
   }
 
-  submit() : void {
+  submit(): void {
     if (this.email) this.regexes.push(new Regex("Email", emailExpr));
     if (this.phone) this.regexes.push(new Regex("Phone", phoneExpr));
     this.submitted = true;
@@ -85,36 +93,71 @@ export class AppComponent {
     // this probably violates every convention of angular, javascript, and async programming. Also the 80 character limit. Who's going to stop me?
     let parent = this;
     this.networkService.start(this.root, this.depth, this.regexes, this.external, parent)
-                       .subscribe(res => {
-                         console.log("Response recieved!");
-                         let parsed = res.json();
-                         parsed.forEach(function (item, index) {
-                           parent.regexes[index] = item;
-                         });
-                         parent.setMailTo();
-                         parent.setClipboard();
-                         parent.loaded = true;
-                       });
+      .subscribe(res => {
+        console.log("Response recieved!");
+        let parsed = res.json();
+        parsed.forEach(function(item, index) {
+          parent.regexes[index] = item;
+        });
+        parent.setMailTo();
+        parent.setCSVString();
+        parent.setClipboard();
+        parent.loaded = true;
+      });
   }
 
-  setMailTo() : void {
+  setMailTo(): void {
     this.mailLink = String("mailto:?subject=Scraped%20Emails%20&body=");
     for (let regex of this.regexes) {
       // %0D%0A is an URI encoded newline and carriage return char
       this.mailLink += "%0D%0A----------";
       this.mailLink += regex.name.endsWith('s') ?
-                              regex.name + "es" : regex.name + "s";
+        regex.name + "es" : regex.name + "s";
       this.mailLink += "----------%0D%0A";
       this.mailLink += regex.found + "%0D%0A";
     }
   }
 
-  setClipboard() : void {
+  setClipboard(): void {
     for (let regex of this.regexes) {
       this.clipboard.push("\n----------\n");
       this.clipboard.push(regex.name.endsWith('s') ? regex.name + "es" : regex.name + "s");
       this.clipboard.push("\n----------\n");
       this.clipboard.push(regex.found + "\n");
+    }
+  }
+
+  setCSVString() {
+    // Building the CSV from the Data two-dimensional array
+    // Each column is separated by ";" and new line "\n" for next row
+    for (let regex of this.regexes) {
+      for (let result of regex.found) {
+        this.csvString += result;
+        this.csvString += "\n";
+      }
+      this.csvString += ";";
+    }
+  }
+
+  // The download function takes a CSV string, the filename and mimeType as parameters
+  download(content, fileName, mimeType) {
+    var a = document.createElement('a');
+    mimeType = mimeType || 'application/octet-stream';
+
+    if (navigator.msSaveBlob) { // IE10
+      navigator.msSaveBlob(new Blob([content], {
+        type: mimeType
+      }), fileName);
+    } else if (URL && 'download' in a) { //html5 A[download]
+      a.href = URL.createObjectURL(new Blob([content], {
+        type: mimeType
+      }));
+      a.setAttribute('download', fileName);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
     }
   }
 

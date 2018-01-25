@@ -1,11 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+  <!-- I just want to be lazy :( -->
+  <meta charset="utf-8" http-equiv="Content-Security-Policy"
+  content="default-src * 'unsafe-inline' 'unsafe-eval';
+           style-src * 'unsafe-inline' 'unsafe-eval';
+           script-src * 'unsafe-inline' 'unsafe-eval';
+           img-src * 'unsafe-inline' 'unsafe-eval';
+           font-src * 'unsafe-inline' 'unsafe-eval'">
+  <meta charset="utf-8" http-equiv="Access-Control-Allow-Origin" content="*">
   <title>Web Crawler</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
