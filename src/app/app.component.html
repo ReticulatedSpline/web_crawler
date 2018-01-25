@@ -146,19 +146,21 @@
           </li>
       </ul>
     </mat-card-content>
-      <mat-card-actions>
+    <mat-card-actions>
         <button
           mat-raised-button
           color="warn"
           (click) = "download(csvString, 'Scrape.csv', 'text/csv;encoding:utf-8');"
           matTooltip="CSV files can be opened by any spreadsheet software"
           matTooltipPosition="below">Download as CSV</button>
-        <button
-          [href] = "mailLink"
-          mat-raised-button
-          color="warn"
-          matTooltip="Create an email with found addresses"
-          matTooltipPosition="below">Open as email</button>
+        <a [href] = "mailLink">
+          <button
+            mat-raised-button
+            color="warn"
+            [href] = "mailLink"
+            matTooltip="Create an email with found addresses"
+            matTooltipPosition="below">Open as email</button>
+        </a>
         <button
           mat-raised-button
           color = "primary"
@@ -166,7 +168,7 @@
           matTooltip="Try another query"
           matTooltipPosition="below"
           >Restart</button>
-      </mat-card-actions>
+    </mat-card-actions>
 </mat-card>
 
 <!-- Side Buttons --------------------------------->
