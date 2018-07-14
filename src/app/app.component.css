@@ -41,6 +41,12 @@ h3, h4 {
   margin-bottom: 1em;
 }
 
+#trickyLink {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
 #resultList {
   padding-left: 1em;
   padding-top: 4%;

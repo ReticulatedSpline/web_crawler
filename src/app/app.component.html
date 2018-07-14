@@ -153,7 +153,8 @@
           (click) = "download(csvString, 'Scrape.csv', 'text/csv;encoding:utf-8');"
           matTooltip="CSV files can be opened by any spreadsheet software"
           matTooltipPosition="below">Download as CSV</button>
-        <a [href] = "mailLink">
+        <a [href] = "mailLink"
+           id = "trickyLink">
           <button
             mat-raised-button
             color="warn"

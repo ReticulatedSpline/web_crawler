@@ -14,9 +14,9 @@ import { MatButtonModule,
          MatSelectModule,
          MatSliderModule,
          MatProgressBarModule} from '@angular/material';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { ClipboardModule } from 'ngx-clipboard';
-import {NetworkService} from './network.service';
+import { NetworkService } from './network.service';
 
 @NgModule({
   declarations: [

@@ -107,14 +107,14 @@ export class AppComponent {
   }
 
   setMailTo(): void {
-    this.mailLink = String("mailto:?subject=Scraped%20Emails%20&body=");
+    this.mailLink = String("mailto:?subject=Scrape%20Results%20&body=");
     for (let regex of this.regexes) {
       // %0D%0A is an URI encoded newline and carriage return char
       this.mailLink += "%0D%0A----------";
       this.mailLink += regex.name.endsWith('s') ?
         regex.name + "es" : regex.name + "s";
       this.mailLink += "----------%0D%0A";
-      this.mailLink += regex.found + "%0D%0A";
+      this.mailLink += regex.found.join(', ') + "%0D%0A";
     }
   }
 
@@ -181,6 +181,6 @@ export class AppComponent {
 }
 
 const defaultRoot = "http://www.mdbizcon.com";
-const emailExpr = "[A-Z0-9.]+@[A-Z0-9.-]+\.[A-Z]{2,}([A-Z]{2,})?";
+const emailExpr = "([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)";
 const phoneExpr = "(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}";
 const addressExpr = "\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\.";
