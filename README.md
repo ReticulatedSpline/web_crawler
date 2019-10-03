@@ -23,7 +23,5 @@ Run `ng build` to transpile to the /dist folder. It can then be served with `npm
 
 # Usage
 
-![Web scraper UI](http://i65.tinypic.com/nlu8n6.png)
-
 The root site is where the search starts. Quota is the number of pages to process.
 You can specify searching for email, phone, regex, or add custom targets.
