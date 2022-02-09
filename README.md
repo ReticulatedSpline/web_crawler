@@ -1,8 +1,6 @@
 # About
 This is another small webapp based on the [Utilities Balancer](https://github.com/ReticulatedSpline/Utilities-Balancer-3) UI. Give it a root node, the number of pages to search, and some RegEx targets and it will politely ask the NodeJS backend to complete the search. The split stack was done as a work-around to the [Same Origin Policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy).
 
-You can break it on [Heroku](https://web-crawler-proto.herokuapp.com/) if it isn't broken already.
-
 # Credits
 
 This app uses HTML5 for DOM elements and pure CSS for styling. The business logic is implemented with [Angular](https://angular.io/), a Javascript framework. A single purpose [Node.js](https://nodejs.org/en/) server is used to serve the webpage as well as run the search algorithm.
